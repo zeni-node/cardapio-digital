@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Sabor & Cia - Cardápio Digital</title>
+	<link rel="stylesheet" href="styles.css">
+
+</head>
+
+<body>
+
+    <!-- =========================
+         HEADER
+    ========================== -->
+
+    <header>
+        <div class="header-content">
+
+            <div class="logo-area">
+
+                <div class="logo">
+                    🍔
+                </div>
+
+                <div class="store-info">
+                    <h1>Sabor & Cia</h1>
+
+                    <div class="store-status">
+                        <span class="status-dot"></span>
+                        Loja aberta
+                    </div>
+                </div>
+
+            </div>
+
+            <button class="cart-button" onclick="openCart()">
+                <span class="cart-label">Meu carrinho</span>
+                <span class="cart-count" id="cartCount">0</span>
+
+                <span class="cart-particles" aria-hidden="true">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </span>
+            </button>
+
+        </div>
+    </header>
+
+
+    <!-- =========================
+         HERO
+    ========================== -->
+
+    <section class="hero">
+
+        <div class="hero-box">
+
+            <h2>Seu lanche favorito está aqui!</h2>
+
+            <p>
+                Escolha seus produtos, monte seu pedido e finalize
+                sua compra de forma rápida e simples.
+            </p>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================
+         CARDÁPIO
+    ========================== -->
+   
+    <main class="menu-container">
+
+        <div class="menu-top">
+
+            <h2>Nosso cardápio</h2>
+
+            <div class="category-picker" id="categoryPicker">
+                <button class="category-btn active" data-category="todos" type="button">
+                    Todos
+                </button>
+                <button class="category-btn" data-category="hamburguer" type="button">
+                    Hambúrgueres
+                </button>
+                <button class="category-btn" data-category="pizza" type="button">
+                    Pizzas
+                </button>
+                <button class="category-btn" data-category="sorvete" type="button">
+                    Sorvetes
+                </button>
+                <button class="category-btn" data-category="bebida" type="button">
+                    Bebidas
+                </button>
+                <button class="category-btn" data-category="combo" type="button">
+                    Combos
+                </button>
+            </div>
+
+        </div>
+
+        <div class="products" id="products"></div>
+
+    </main>
+
+
+    <!-- =========================
+         OVERLAY
+    ========================== -->
+
+    <div
+        class="overlay"
+        id="overlay"
+        onclick="closeCart()"
+    ></div>
+
+    <div id="toast" class="toast">
+        Produto adicionado!
+    </div>
+
+
+    <!-- =========================
+         CARRINHO
+    ========================== -->
+
+    <aside class="cart" id="cart">
+
+        <div class="cart-header">
+
+            <h2>Meu carrinho</h2>
+
+            <button
+                class="close-cart"
+                onclick="closeCart()"
+            >
+                ×
+            </button>
+
+        </div>
+
+        <div class="cart-items" id="cartItems">
+
+            <div class="empty-cart">
+
+                <div>🛒</div>
+
+                <p>
+                    Seu carrinho está vazio.
+                </p>
+
+            </div>
+
+        </div>
+
+        <div class="cart-footer">
+
+            <div class="total-row">
+
+                <span>Total</span>
+
+                <span id="cartTotal">
+                    R$ 0,00
+                </span>
+
+            </div>
+
+            <button
+                class="checkout-button"
+                id="checkoutButton"
+                onclick="goToCheckout()"
+                disabled
+            >
+                Continuar para finalizar
+            </button>
+
+        </div>
+
+    </aside>
+
+
+    <!-- =========================
+         CHECKOUT
+    ========================== -->
+
+    <section
+        class="checkout-screen"
+        id="checkoutScreen"
+    >
+
+        <div class="checkout-container">
+
+            <div class="checkout-header">
+
+                <button
+                    class="back-button"
+                    onclick="backToMenu()"
+                >
+                    ←
+                </button>
+
+                <div class="checkout-title">
+
+                    <h2>Finalizar pedido</h2>
+
+                    <p>
+                        Confira os detalhes antes de continuar.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="checkout-grid">
+
+                <!-- RESUMO -->
+
+                <div class="checkout-card">
+
+                    <h3>Resumo da compra</h3>
+
+                    <div id="checkoutItems"></div>
+
+                    <div class="summary-total">
+
+                        <span>Total</span>
+
+                        <span id="checkoutTotal">
+                            R$ 0,00
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+                <!-- DADOS -->
+
+                <div class="checkout-card">
+
+                    <h3>Seus dados</h3>
+
+                    <div class="customer-form">
+
+                        <div>
+                            <label>Nome</label>
+
+                            <input
+                                type="text"
+                                placeholder="Digite seu nome"
+                                id="customerName"
+                            >
+                        </div>
+
+                        <div>
+                            <label>Telefone</label>
+
+                            <input
+                                type="tel"
+                                placeholder="(00) 00000-0000"
+                                id="customerPhone"
+                            >
+                        </div>
+
+                        <div>
+                            <label>Endereço</label>
+
+                            <textarea
+                                rows="3"
+                                placeholder="Digite seu endereço"
+                                id="customerAddress"
+                            ></textarea>
+                        </div>
+
+                    </div>
+
+                    <button
+                        class="payment-button"
+                        onclick="processPayment()"
+                    >
+                        Ir para pagamento
+                    </button>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================
+         MODAL DE PAGAMENTO
+    ========================== -->
+
+    <div
+        class="payment-modal"
+        id="paymentModal"
+    >
+
+        <div class="payment-box">
+
+            <div class="error-icon">
+                !
+            </div>
+
+            <h2>Pagamento indisponível</h2>
+
+            <p>
+                Não foi possível iniciar o pagamento.
+                Este é um site demonstrativo e o sistema
+                de pagamento ainda não está conectado a
+                um serviço real.
+            </p>
+
+            <button
+                class="close-payment"
+                onclick="closePaymentModal()"
+            >
+                Entendi
+            </button>
+
+        </div>
+
+
+
+    </div>
+
+	<div id="toast" class="toast">
+    Produto adicionado!
+	</div>
+    <script src="script.js"></script>
+</body>
+</html>
