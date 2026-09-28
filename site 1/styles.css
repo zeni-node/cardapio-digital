@@ -114,3 +114,42 @@ img{
         transform: rotate(360deg);
     }
 }
+
+
+#wl {
+    width: 100px;
+    position: absolute;
+    animation: andar 5s linear infinite;
+}
+
+@keyframes andar {
+    0% {
+        left: 0;
+        top: 0;
+        transform: rotate(0deg);
+    }
+
+    25% {
+        left: calc(100% - 150px);
+        top: 0;
+        transform: rotate(360deg);
+    }
+
+    50% {
+        left: calc(100% - 150px);
+        top: calc(100% - 150px);
+        transform: rotate(720deg);
+    }
+
+    75% {
+        left: 0;
+        top: calc(100% - 150px);
+        transform: rotate(1080deg);
+    }
+
+    100% {
+        left: 0;
+        top: 0;
+        transform: rotate(1440deg);
+    }
+}
